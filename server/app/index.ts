@@ -1,6 +1,6 @@
 import express from "express"
 import blogs from "./blogs";
-import { green } from "colors";
+import { green, red } from "colors";
 import { log } from "console";
 import cors from 'cors';
 import { connect } from "mongoose";
@@ -14,7 +14,9 @@ export default class Application {
     constructor({port, db}:{port: number; db: string}){
         this.port = port
         this.db = db
+        this.configMiddleware()
         this.configMModule()
+        this.configDatabase()
         this.configServer()
     }
 
@@ -25,7 +27,8 @@ export default class Application {
     async configDatabase(){
         try {
             await connect(this.db)
-        } catch (error) {
+        } catch (error: unknown) {
+            log(red(`${error}`));
             
         }
     }
