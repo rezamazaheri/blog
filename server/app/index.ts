@@ -1,7 +1,10 @@
 import express from "express"
-// import blogs from "./blogs";
+import blogs from "./blogs";
 import { green } from "colors";
 import { log } from "console";
+import cors from 'cors';
+import { connect } from "mongoose";
+
 const app = express()
 
 
@@ -16,7 +19,20 @@ export default class Application {
     }
 
     configMModule(){
-        // app.use('/api/v1/blogs', blogs)
+        app.use('/api/v1/blogs', blogs)
+    }
+
+    async configDatabase(){
+        try {
+            await connect(this.db)
+        } catch (error) {
+            
+        }
+    }
+
+    configMiddleware(){
+        app.use(cors())
+        app.use(express.json())
     }
 
     configServer(){
