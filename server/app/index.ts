@@ -11,7 +11,7 @@ const app = express()
 export default class Application {
     port: number
     db: string
-    constructor({port, db}:{port: number; db: string}){
+    constructor({ port, db }: { port: number; db: string }) {
         this.port = port
         this.db = db
         this.configMiddleware()
@@ -20,29 +20,29 @@ export default class Application {
         this.configServer()
     }
 
-    configMModule(){
-        app.use('/api/v1/blogs', blogs)
+    configMModule() {
+        app.use('/api/v1/posts', blogs)
     }
 
-    async configDatabase(){
+    async configDatabase() {
         try {
             await connect(this.db)
         } catch (error: unknown) {
             log(red(`${error}`));
-            
+
         }
     }
 
-    configMiddleware(){
+    configMiddleware() {
         app.use(cors())
         app.use(express.json())
     }
 
-    configServer(){
-        app.listen(this.port, ()=>{
+    configServer() {
+        app.listen(this.port, () => {
             log(green(`Server run port: ${this.port}`));
         })
     }
 
-    
+
 }
