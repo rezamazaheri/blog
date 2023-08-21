@@ -7,7 +7,6 @@ import { connect } from "mongoose";
 
 const app = express()
 
-
 export default class Application {
     port: number
     db: string

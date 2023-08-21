@@ -34,6 +34,13 @@ export default new class Controller {
       data: blog
     })
   }
+  /**
+* Update one post
+* @param {Request} req - The request object.
+* @param {Response} res - The response object.
+* @param {NextFunction} next - The next function.
+* @returns {Promise<void>}
+*/
   async createOne(req: Request, res: Response, next: NextFunction) {
     const data = pick(req.body, ['title', 'image', 'caption', 'excerpt'])
     const result = await model.create(data)
@@ -69,6 +76,13 @@ export default new class Controller {
       data: result
     })
   }
+  /**
+ * Delete one post
+ * @param {Request} req - The request object.
+ * @param {Response} res - The response object.
+ * @param {NextFunction} next - The next function.
+ * @returns {Promise<void>}
+ */
   async deleteOne(req: Request, res: Response, next: NextFunction) {
     const result = await model.findByIdAndRemove(req.params.id)
     if (isNull(result)) {
