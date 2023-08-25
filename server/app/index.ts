@@ -1,5 +1,6 @@
 import express from "express"
 import blogs from "./blogs";
+import users from "./users";
 import { green, red } from "colors";
 import { log } from "console";
 import cors from 'cors';
@@ -21,6 +22,7 @@ export default class Application {
 
     configMModule() {
         app.use('/api/v1/posts', blogs)
+        app.use('/api/v1/auth', users)
     }
 
     async configDatabase() {
