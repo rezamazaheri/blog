@@ -1,28 +1,24 @@
 <template>
-  <header>
-    <div class="wrapper">
-      <!--<nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>-->
-    </div>
-  </header>
-  <RouterView />
+  <div :class="`${scope}`">
+    <nav>
+      <RouterLink :to="{ name: 'home'}">Blogs</RouterLink>
+      <RouterLink :to="{ name: 'createPost'}">Create a Post</RouterLink>
+    </nav>
+    <RouterView />
+  </div>
 </template>
 
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
+import { useDesign } from '@/composable/useDesign'
+
+const scope = useDesign('app')
 </script>
 
-<style scoped>
+<style>
 header {
   line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+  border: 1px solid red;
 }
 
 nav {
@@ -30,6 +26,7 @@ nav {
   font-size: 12px;
   text-align: center;
   margin-top: 2rem;
+  display: block;
 }
 
 nav a.router-link-exact-active {
@@ -57,14 +54,10 @@ nav a:first-of-type {
     padding-right: calc(var(--section-gap) / 2);
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
   header .wrapper {
     display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
+    flex-direction: column;
+    border: 1px solid green;
   }
 
   nav {
