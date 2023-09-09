@@ -3,7 +3,6 @@ import UnoCSS from 'unocss/vite'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
@@ -12,7 +11,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
-      'core': fileURLToPath(new URL('../client/core', import.meta.url))
+      'core': fileURLToPath(new URL('./core', import.meta.url))
     }
-  }
+  },
 })

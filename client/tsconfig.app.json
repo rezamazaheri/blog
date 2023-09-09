@@ -1,13 +1,13 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "core/composables/useDesign.ts"],
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "./core/**/*", "./core/**/*.vue"],
   "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
     "composite": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "core/*": ["../client/core"]
+      "core/*": ["./core/*"]
     }
   }
 }
